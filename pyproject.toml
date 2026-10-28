@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "mindspar"
+version = "0.1.0"
+description = "Mindspar (腦力擂台): a quiz duel against an AI. You and the model the AI Hub sets get the same question at the same moment; seven kinds of questions test what a model is good at, and every match is kept per model, so models can be compared. For *.reflex-ddns.com."
+authors = ["Milo Chen"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "mindspar"}]
+
+[tool.poetry.dependencies]
+# Developed on 3.15; 3.11 stays allowed for the re_ddns App Store image (python:3.11).
+python = ">=3.11,<3.16"
+reflex = "0.10.0"
+# The AI opponent: the AI Hub's models (reflex_ddns_auth.ai); the game holds no model or key.
+reflex-ddns-auth = {path = "../reflex_ddns_auth", develop = true}
+httpx = ">=0.28"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+playwright = "^1.42.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
